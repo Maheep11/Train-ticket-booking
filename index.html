@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url(https://indiashippingnews.com/wp-content/uploads/2023/12/vande-bharat.webp);
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Add a semi-transparent overlay for increased fade */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Increased fade effect */
+            z-index: -1;
+        }
+
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 1 rem;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: initial;
+            gap: 0.2rem;
+        }
+
+        header img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 5rem;
+            margin: 2rem;
+            width: 100%;
+             max-width: 1400px; /* Increased max-width for broader layout */
+        }
+
+        .container,
+        .side-box {
+            background: rgba(44, 44, 62, 0.8); /* Semi-transparent background */
+            backdrop-filter: blur(10px); /* Blur effect */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 40%; /* Slightly broader boxes */
+        }
+
+        .side-box {
+            flex: 1;
+            margin-bottom: 1.5rem;
+            width: 102%; /* Adjusted width for side boxes */
+            margin-left: 4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.2rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #ed750d;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ed750d;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: rgba(30, 30, 47, 0.8);
+            color: #bbb;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            width: 100%;
+            border-top: 1px solid #444;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.jpg" alt="Train Icon">
+        <h1>Train Ticket Booking</h1>
+    </header>
+    <div class="main-content">
+        <!-- Booking Form -->
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <h3>Book Your Train Ticket</h3>
+                    <label for="from">From</label>
+                    <input type="text" id="from" name="from" placeholder="Enter departure station" required>
+                </div>
+                <div class="form-group">
+                    <label for="to">To</label>
+                    <input type="text" id="to" name="to" placeholder="Enter destination station" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date of Journey</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="class">Class</label>
+                    <select id="class" name="class" required>
+                        <option value="Sleeper">Sleeper</option>
+                        <option value="3rd A.C.">3rd A.C.</option>
+                        <option value="2nd A.C.">2nd A.C.</option>
+                        <option value="1st A.C.">1st A.C.</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+                <button type="submit">Search Trains</button>
+            </form>
+        </div>
+
+        <!-- Side Boxes -->
+        <div>
+            <!-- Live Train Status Box -->
+            <div class="side-box">
+                <h3>Track Live Train Status</h3>
+                <div class="form-group">
+                    <label for="train-number">Train Number</label>
+                    <input type="text" id="train-number" placeholder="Enter Train Number (e.g., 12345)">
+                </div>
+                <div class="form-group">
+                    <label for="train-name">Train Name</label>
+                    <input type="text" id="train-name" placeholder="Enter Train Name (optional)">
+                </div>
+                <button type="button" onclick="trackTrain()" aria-label="Track Train">Track Train</button>
+            </div>
+
+            <!-- Ticket Confirmation Probability Box -->
+            <div class="side-box">
+                <h3>Check Ticket Confirmation Probability</h3>
+                <div class="form-group">
+                    <label for="prob-train-number">Train Number</label>
+                    <input type="text" id="prob-train-number" placeholder="Enter Train Number">
+                </div>
+                <div class="form-group">
+                    <label for="prob-date">Date of Journey</label>
+                    <input type="date" id="prob-date">
+                </div>
+                <button type="button" onclick="checkTicketProbability()" aria-label="Check Ticket Confirmation Probability">Check Probability</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Train Ticket Booking. All rights reserved.
+    </footer>
+
+    <script>
+        // Function to track live train status
+        function trackTrain() {
+            const trainNumber = document.getElementById("train-number").value;
+            const trainName = document.getElementById("train-name").value;
+            if (trainNumber || trainName) {
+                alert(`Fetching live status for Train: ${trainName || trainNumber}`);
+                // Add logic to fetch live train status here
+            } else {
+                alert("Please enter a train number or name.");
+            }
+        }
+
+        // Function to check ticket confirmation probability
+        function checkTicketProbability() {
+            const trainNumber = document.getElementById("prob-train-number").value;
+            const date = document.getElementById("prob-date").value;
+            if (trainNumber && date) {
+                alert(`Checking ticket confirmation probability for Train Number: ${trainNumber} on ${date}`);
+                // Add logic to calculate ticket confirmation probability here
+            } else {
+                alert("Please enter both train number and date.");
+            }
+        }
+    </script>
+</body>
+
+</html>
