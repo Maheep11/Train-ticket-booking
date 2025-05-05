@@ -52,5 +52,5 @@ If you're working on similar ideas or want to collaborate, feel free to reach ou
 ---
 ## 👥 Author
 
-- [Maheep Singh] – *Developer*   
-- [Akhil Soni] – *Creator & Developer*
+- [Maheep Singh] – *Creator & Developer*   
+- [Akhil Soni] – *Developer*
