@@ -9,7 +9,7 @@ function trackTrain() {
         alert("Please enter a train number or name.");
     }
 }
- 
+
 // Function to check ticket confirmation probability
 function checkTicketProbability() {
     const trainNumber = document.getElementById("prob-train-number").value;
